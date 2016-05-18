@@ -5,7 +5,9 @@ from src.controller import Controller
 def main():
     parser = argparse.ArgumentParser(
     epilog="""
-    Formatting tool for structure and pedigree output.
+    Formatting tool for structure and pedigree output.\n
+    Latest version at:\n
+    https://github.com/genomeannotation/reformat
     """,
     formatter_class=argparse.RawDescriptionHelpFormatter
     )
