@@ -30,9 +30,9 @@ class Output_ped:
 	def to_file(self, out_dir, data):	
 		output = []
 
-        	fo = open(out_dir + '/output.ped', 'w')
+		fo = open(out_dir + '/output.ped', 'w')
 
-		trans_SNPs = zip(*data.SNPs) #transpose the SNPs
+		trans_SNPs = list(zip(*data.SNPs)) #transpose the SNPs
 
 		#begin formatting output
 		output.append([])
@@ -86,17 +86,16 @@ class Output_ped:
 				elif (data.ped_phenotype[i] == "White"):
 					output[-1].append("2")
 
-				#TODO this may be a wrong decision
-				if len(data.REF_ALT) == 0: #output in non-ddrad form
+				if len(data.REF_ALT) == 0: #plink input
 					for snp in data.SNPs[location]:
-						output[-1].append(snp[0] + " " + snp[2] + "\t")
-				else:
+						output[-1].append(snp[0] + " " + snp[2])
+				else: #vcf input
 					for snp in trans_SNPs[location]:
 						output[-1].append(self.ped_genotype(snp))
 	
 			#progress output
 			sys.stdout.write('\r')
-			sys.stdout.write("[processing .ped output: " + str(((i+1)*100/len(data.ped_ind))) + "%]")
+			sys.stdout.write("[processing .ped output: " + str(round(((i+1)*100/len(data.ped_ind)))) + "%]")
 			sys.stdout.flush()
 
 
@@ -120,7 +119,7 @@ class Output_ped:
 
 			#progress output
 			sys.stdout.write('\r')
-			sys.stdout.write("[writing: " + fo.name + " " + str((i*100/len(output))) + "%]")
+			sys.stdout.write("[writing: " + fo.name + " " + str(round((i*100/len(output)))) + "%]")
 			sys.stdout.flush()
 
 		fo.close()

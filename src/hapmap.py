@@ -38,14 +38,14 @@ class Hapmap:
 		
 			#progress output
 			sys.stdout.write('\r')
-			sys.stdout.write("[reading " + hapmap_filename + ": " + str((i*100/len(allLines))) + "%]")
+			sys.stdout.write("[reading " + hapmap_filename + ": " + str(round((i*100/len(allLines)))) + "%]")
 			sys.stdout.flush()
 			i = i+1
 
 		fi.close()
 		sys.stdout.write('\n')
-		print "number of names: ", len(data.ind_names)
-		print "number of SNP locations: ", len(data.SNP_labels)
+		#print "number of names: ", len(data.ind_names)
+		#print "number of SNP locations: ", len(data.SNP_labels)
 
 		sys.stderr.write("Done.\n")
 

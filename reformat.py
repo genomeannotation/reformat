@@ -1,4 +1,3 @@
-import sys
 import argparse
 from src.controller import Controller
 

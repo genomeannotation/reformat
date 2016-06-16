@@ -33,7 +33,7 @@ class Output_struct:
 			'G': '3',
 			'T': '4',	 
 		}
-	    	switcher1 = {
+		switcher1 = {
 			'0': letter_to_num.get(ref_alt[0][0]),
 			'1': letter_to_num.get(ref_alt[0][1]),
 			'.': 'N'
@@ -68,7 +68,7 @@ class Output_struct:
 		if len(data.REF_ALT) == 0:
 			return #do not print struct output when there is no reference/alternative for genome
 
-        	fo = open(out_dir + '/output.struct', 'w')
+		fo = open(out_dir + '/output.struct', 'w')
 
 		for i, snps in enumerate(data.SNPs):
 			temp_SNPS.append([])
@@ -76,10 +76,10 @@ class Output_struct:
 				temp_SNPS[-1].append(self.bin_to_letter(snp, data.REF_ALT[i]))
 			#progress output
 			sys.stdout.write('\r')
-			sys.stdout.write("[processing .struct output: " + str(((i+1)*100/len(data.SNPs))) + "%]")
+			sys.stdout.write("[processing .struct output: " + str(round(((i+1)*100/len(data.SNPs)))) + "%]")
 			sys.stdout.flush()
 
-		trans_SNPs = zip(*temp_SNPS) #transpose the SNPs
+		trans_SNPs = list(zip(*temp_SNPS)) #transpose the SNPs
 
 		#format output
 		output.append(data.SNP_labels)
@@ -93,7 +93,7 @@ class Output_struct:
 
 			#progress output
 			sys.stdout.write('\r')
-			sys.stdout.write("[processing .struct output: " + str(((i+1)*100/len(data.ind_names))) + "%]")
+			sys.stdout.write("[processing .struct output: " + str(round(((i+1)*100/len(data.ind_names)))) + "%]")
 			sys.stdout.flush()
 		sys.stdout.write('\n')
 	
@@ -121,7 +121,7 @@ class Output_struct:
 
 			#progress output
 			sys.stdout.write('\r')
-			sys.stdout.write("[writing " + fo.name + ": " + str(((i+1)*100/len(output))) + "%]")
+			sys.stdout.write("[writing " + fo.name + ": " + str(round(((i+1)*100/len(output)))) + "%]")
 			sys.stdout.flush()
 
 		fo.close()

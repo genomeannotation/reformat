@@ -15,7 +15,6 @@ class Vcf:
 		if not os.path.isfile(vcf_filename):
 		    sys.stderr.write("Failed to find " + vcf_filename + ".\n")
 		    sys.exit()
-		sys.stderr.write("Reading Vcf...\n")
 
 		fi = open(vcf_filename, 'r')
 		allLines = fi.readlines()
@@ -41,7 +40,7 @@ class Vcf:
 						data.SNPs[-1].append(snp.split(":")[0])
 			#progress output
 			sys.stdout.write('\r')
-			sys.stdout.write("[reading " + vcf_filename + ": " + str(((i+1)*100/len(allLines))) + "%]")
+			sys.stdout.write("[reading " + vcf_filename + ": " + str(round(((i+1)*100/len(allLines)))) + "%]")
 			sys.stdout.flush()
 			i = i+1
 		fi.close()

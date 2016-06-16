@@ -15,24 +15,26 @@ class Plink_Map:
 		if not os.path.isfile(map_filename):
 		    sys.stderr.write("Failed to find " + map_filename + ".\n")
 		    sys.exit()
-		sys.stderr.write("Reading Map...\n")
 
 		fi = open(map_filename, 'r')
 		allLines = fi.readlines()
 
 		i = 1
+		j = 0
 		for words in allLines:
 			words = words.strip('\n')
 			splits = words.split("\t")
 			if words[0] != "#":
 				#SNP label
-				data.SNP_labels.append(splits[0].split("|")[3][:-2] + "_" + splits[3])
-				#print(SNP_labels[-1])
-		
+				if splits[0].split("|")[3][:-2] + "_" + splits[3] not in data.SNP_labels:
+					data.SNP_labels.append(splits[0].split("|")[3][:-2] + "_" + splits[3])
+				else:
+					data.plink_rejects.append(j)
+				j = j + 1
 
 			#progress output
 			sys.stdout.write('\r')
-			sys.stdout.write("[reading " + map_filename + ": " + str((i*100/len(allLines))) + "%]")
+			sys.stdout.write("[reading " + map_filename + ": " + str(round((i*100/len(allLines)))) + "%]")
 			sys.stdout.flush()
 			i = i+1
 

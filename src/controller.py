@@ -44,14 +44,14 @@ class Controller:
             Family.read_family(self.family_mnger, family_filename, self.data)
 
         # Read Ped file
-        if args.plink_ped:
-            ped_filename = args.plink_ped
-            Plink_Ped.read_ped(self.ped_mnger, ped_filename, self.data)
-
-        # Read Ped file
         if args.plink_map:
             map_filename = args.plink_map
             Plink_Map.read_map(self.map_mnger, map_filename, self.data)
+
+        # Read Ped file
+        if args.plink_ped:
+            ped_filename = args.plink_ped
+            Plink_Ped.read_ped(self.ped_mnger, ped_filename, self.data)
 
 ############################################### outputs ######################################################################
 

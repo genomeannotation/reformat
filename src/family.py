@@ -15,7 +15,6 @@ class Family:
 		if not os.path.isfile(family_filename):
 		    sys.stderr.write("Failed to find " + family_filename + ".\n")
 		    sys.exit()
-		sys.stderr.write("Reading Family...\n")
 
 		fi = open(family_filename, 'r')
 		allLines = fi.readlines()
@@ -37,7 +36,7 @@ class Family:
 				data.ped_sex.append(splits[4].strip())
 			#progress output
 			sys.stdout.write('\r')
-			sys.stdout.write("[reading " + family_filename + ": " + str((i*100/len(allLines))) + "%]")
+			sys.stdout.write("[reading " + family_filename + ": " + str(round((i*100/len(allLines)))) + "%]")
 			sys.stdout.flush()
 			i = i+1
 		fi.close()
