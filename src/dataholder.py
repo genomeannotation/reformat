@@ -21,3 +21,4 @@ class DataHolder:
         self.ped_dad = []
         self.SNPs_firsts = []
         self.plink_rejects = []
+        self.cleaned_map = []

@@ -30,8 +30,6 @@ class Output_ped:
 	def to_file(self, out_dir, data):	
 		output = []
 
-		fo = open(out_dir + '/output.ped', 'w')
-
 		trans_SNPs = list(zip(*data.SNPs)) #transpose the SNPs
 
 		#begin formatting output
@@ -100,9 +98,18 @@ class Output_ped:
 
 
 		sys.stdout.write('\n')
+
+		#write cleaned map file
+		fo = open(out_dir + '/pre_fragscaff.plink.map', 'w')
+		#print (data.cleaned_map[:])
+		for line in data.cleaned_map:
+			fo.write('\t'.join(line))
+			fo.write('\n')
+				
 	
+		fo.close
 		#write output to file
-		fo = open(fo.name, 'w')
+		fo = open(out_dir + '/output.ped', 'w')
 		i = 0
 		for line in output:
 			j=0

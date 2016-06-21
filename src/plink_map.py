@@ -24,13 +24,21 @@ class Plink_Map:
 		for words in allLines:
 			words = words.strip('\n')
 			splits = words.split("\t")
+			data.cleaned_map.append([])
 			if words[0] != "#":
 				#SNP label
 				if splits[0].split("|")[3][:-2] + "_" + splits[3] not in data.SNP_labels:
 					data.SNP_labels.append(splits[0].split("|")[3][:-2] + "_" + splits[3])
 				else:
 					data.plink_rejects.append(j)
+
+				data.cleaned_map[-1].append(splits[0].split("|")[3])
+				data.cleaned_map[-1].append(splits[1])
+				data.cleaned_map[-1].append(splits[2])
+				data.cleaned_map[-1].append(str(int(splits[3])-1))
 				j = j + 1
+			else: 
+				data.cleaned_map[-1].append(words)
 
 			#progress output
 			sys.stdout.write('\r')
