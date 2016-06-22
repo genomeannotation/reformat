@@ -23,9 +23,11 @@ class Vcf:
 		for i, words in enumerate(allLines):
 			words = words.strip('\n')
 			splits = words.split("\t")
+			data.cleaned_map.append([])
 			#take individual names
 			if splits[0] == "#CHROM":
 				data.ind_names = splits[9:]
+				data.cleaned_map[-1].append(words)
 				g = 1
 			#take SNP data
 			elif g == 1:
@@ -38,6 +40,9 @@ class Vcf:
 				data.SNPs.append([])
 				for snp in splits[9:]:
 						data.SNPs[-1].append(snp.split(":")[0])
+				data.cleaned_map[-1].append(splits[0].split("|")[3])
+				data.cleaned_map[-1].append(splits[1])
+
 			#progress output
 			sys.stdout.write('\r')
 			sys.stdout.write("[reading " + vcf_filename + ": " + str(round(((i+1)*100/len(allLines)))) + "%]")

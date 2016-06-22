@@ -33,8 +33,6 @@ class Plink_Map:
 					data.plink_rejects.append(j)
 
 				data.cleaned_map[-1].append(splits[0].split("|")[3])
-				data.cleaned_map[-1].append(splits[1])
-				data.cleaned_map[-1].append(splits[2])
 				data.cleaned_map[-1].append(str(int(splits[3])-1))
 				j = j + 1
 			else: 
